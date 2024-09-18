@@ -1,0 +1,37 @@
+{
+  "name": "pizzashop-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./dist/http/server.js",
+    "dev": "tsx watch --env-file .env ./src/http/server.ts",
+    "build": "tsup src",
+    "seed": "tsx --env-file .env ./src/db/seed.ts",
+    "generate": "npx drizzle-kit generate",
+    "migrate": "npx drizzle-kit migrate",
+    "studio": "npx drizzle-kit studio"
+  },
+  "keywords": [],
+  "author": "Matheus Torres",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@faker-js/faker": "^9.0.1",
+    "@types/node": "^22.5.5",
+    "@types/pg": "^8.11.10",
+    "drizzle-kit": "^0.24.2",
+    "tsup": "^8.3.0",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "@fastify/cors": "^9.0.1",
+    "@paralleldrive/cuid2": "^2.2.2",
+    "dayjs": "^1.11.13",
+    "drizzle-orm": "^0.33.0",
+    "fastify": "^4.28.1",
+    "fastify-type-provider-zod": "^2.0.0",
+    "postgres": "^3.4.4",
+    "zod": "^3.23.8"
+  }
+}

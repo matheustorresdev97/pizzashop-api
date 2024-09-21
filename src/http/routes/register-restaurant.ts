@@ -1,8 +1,9 @@
-import { createManager, createRestaurant } from "@/app/functions/create-restaurant";
+import { db } from "@/db/connection";
+import { restaurants, users } from "@/db/schema";
 import { FastifyPluginAsyncZod } from "fastify-type-provider-zod";
 import { z } from "zod";
 
-export const createRestaurantRoutes: FastifyPluginAsyncZod = async (app) => {
+export const registerRestaurant: FastifyPluginAsyncZod = async (app) => {
   app.post(
     "/restaurantes",
     {
@@ -20,8 +21,23 @@ export const createRestaurantRoutes: FastifyPluginAsyncZod = async (app) => {
       const { restaurantName, managerName, email, phone } = request.body;
 
       try {
-        const manager = await createManager({ name: managerName, email, phone });
-        await createRestaurant({ name: restaurantName, managerId: manager.id });
+        const [manager] = await db
+          .insert(users)
+          .values({
+            name: managerName,
+            email,
+            phone,
+            role: 'manager',
+          })
+          .returning({
+            id: users.id,
+          });
+
+
+        await db.insert(restaurants).values({
+          name: restaurantName,
+          managerId: manager.id,
+        });
 
         reply.status(204).send();
       } catch (error) {

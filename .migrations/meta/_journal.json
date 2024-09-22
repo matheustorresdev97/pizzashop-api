@@ -15,6 +15,20 @@
       "when": 1726962344127,
       "tag": "0001_crazy_earthquake",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1727041027127,
+      "tag": "0002_living_meggan",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1727041383581,
+      "tag": "0003_short_starhawk",
+      "breakpoints": true
     }
   ]
 }

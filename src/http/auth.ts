@@ -1,6 +1,6 @@
 import { FastifyPluginAsync, FastifyReply, FastifyRequest } from "fastify";
 import fastifyJwt from "@fastify/jwt";
-import fastifyCookie from "@fastify/cookie";
+
 import { env } from "../env";
 import { UnauthorizedError } from "./errors/unauthorized-error";
 
@@ -21,7 +21,6 @@ export const authPlugin: FastifyPluginAsync = async (app) => {
     },
   });
 
-  app.register(fastifyCookie);
 
   app.decorate('signUser', async function (payload: JwtPayload, reply: FastifyReply) {
     const token = this.jwt.sign(payload);
